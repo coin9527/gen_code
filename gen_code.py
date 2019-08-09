@@ -17,7 +17,8 @@ def write_file(filepath,lines):
     name = os.path.basename(filepath)
     if False == os.path.exists(os.path.dirname(filepath)):
         os.makedirs(os.path.dirname(filepath))
-        print("mkdir "+os.path.dirname(filepath))
+        print("mkdir "+os.path.dirname(filepath)+" ...")
+
     print("gen "+filepath+" ....")
     with open(filepath,"w") as f:
         for line in lines:
@@ -46,7 +47,7 @@ def single_case_class(name):
     # TODO
     # 需要更加健壮
     ClassName = "C"+name[0:1].capitalize()+name[1:]
-    h_lines.extend(head_comment(name+".cpp"))
+    h_lines.extend(head_comment(name+".h"))
     h_lines.append("\n")
     h_lines.append("\n")
     h_lines.append("\n")
@@ -79,29 +80,28 @@ def single_case_class(name):
     cpp_lines.append("\n")
     cpp_lines.append("\t"+ClassName+" :: "+ClassName+"()\n")
     cpp_lines.append("\t"+"{\n")
-    cpp_lines.append("\t\t //TODO;\n")
+    cpp_lines.append("\t\t //TODO\n")
     cpp_lines.append("\t"+"}\n")
     cpp_lines.append("\n")
     cpp_lines.append("\t"+ClassName+" :: ~"+ClassName+"()\n")
     cpp_lines.append("\t"+"{\n")
-    cpp_lines.append("\t\t //TODO;\n")
+    cpp_lines.append("\t\t //TODO\n")
     cpp_lines.append("\t"+"}\n")
     cpp_lines.append("\n")
     cpp_lines.append("\t"+ClassName+" * "+ClassName+" :: GetInst()\n")
     cpp_lines.append("\t"+"{\n")
     cpp_lines.append("\t\t static std::unique_ptr<"+ClassName+"> instance;\n")
     cpp_lines.append("\t\t static std::once_flag once;\n")
-    cpp_lines.append("\t\t std::call_once (once,[&](){instance.reset(new"+ClassName+");});\n")
+    cpp_lines.append("\t\t std::call_once (once,[&](){instance.reset(new "+ClassName+");});\n")
     cpp_lines.append("\t\t return instance.get();\n")
     cpp_lines.append("\t"+"}\n")
     cpp_lines.append("\n")
     cpp_lines.append("\tbool "+ClassName+" :: Init()\n")
     cpp_lines.append("\t"+"{\n")
-    cpp_lines.append("\t\t //TODO;\n")
+    cpp_lines.append("\t\t //TODO\n")
     cpp_lines.append("\t\t return true;\n")
     cpp_lines.append("\t"+"}\n")
     return h_lines,cpp_lines
-
 
 def common_class(name):
     h_lines=[]
@@ -174,7 +174,7 @@ def gen_class(name,singleCase):
 def main(args):
 
     global serverName
-    Usage = " ".join(("python/python3 Usage:",args[0],"serverName","classname"))
+    Usage = " ".join(("Usage: python/python3",args[0],"serverName","classname"))
     if len(args)<3:
         print(Usage)
         return
