@@ -174,9 +174,10 @@ def gen_class(name,singleCase):
 def main(args):
 
     global serverName
-    Usage = " ".join(("Usage:",args[0],"serverName","classname"))
+    Usage = " ".join(("python/python3 Usage:",args[0],"serverName","classname"))
     if len(args)<3:
-        print(Udage)
+        print(Usage)
+        return
     serverName = args[1]
     print(serverName)
     classname = args[2]
