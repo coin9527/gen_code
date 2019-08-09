@@ -7,7 +7,7 @@ import sys
 from datetime import *
 import time
 
-projectPath = "/home/godman/xxproject/src"
+projectPath = os.environ["HOME"]+"/xxproject/src"
 serverName = ""
 
 
